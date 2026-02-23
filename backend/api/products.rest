@@ -1,0 +1,51 @@
+@admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY0MzM1OTE3LCJleHAiOjE3NjQ5NDA3MTd9.GDQMoGU3QMVl4rzb87HJB4rqsocaAjLAodCO2q0mz_c
+
+### Get All Products (Paginated)
+GET http://localhost:5000/api/v1/products?page=1&limit=10
+
+### Search Products
+GET http://localhost:5000/api/v1/products/search?query=whiskey
+
+### Get Product by ID
+GET http://localhost:5000/api/v1/products/1
+
+### Create Product (Admin - Multipart)
+POST http://localhost:5000/api/v1/products
+Authorization: Bearer {{admin_token}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+New Whiskey
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="description"
+
+Premium aged whiskey
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="price"
+
+5000
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="stock"
+
+100
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="category"
+
+Whiskey
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="whiskey.jpg"
+Content-Type: image/jpeg
+
+< ./path/to/image.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### Update Stock (Admin)
+PUT http://localhost:5000/api/v1/products/1/stock
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "stock": 150
+}

@@ -1,0 +1,24 @@
+@admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY0MzM1OTE3LCJleHAiOjE3NjQ5NDA3MTd9.GDQMoGU3QMVl4rzb87HJB4rqsocaAjLAodCO2q0mz_c
+
+### Get All Users (Admin)
+GET http://localhost:5000/api/v1/admin/users
+Authorization: Bearer {{admin_token}}
+
+### Get User by ID (Admin)
+GET http://localhost:5000/api/v1/admin/users/1
+Authorization: Bearer {{admin_token}}
+
+### Update User by ID (Admin)
+PUT http://localhost:5000/api/v1/admin/users/1
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "name": "Updated User Name",
+  "address": "Updated Address",
+  "role": "CUSTOMER"
+}
+
+### Delete User by ID (Admin)
+DELETE http://localhost:5000/api/v1/admin/users/1
+Authorization: Bearer {{admin_token}}

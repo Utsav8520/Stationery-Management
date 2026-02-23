@@ -1,0 +1,39 @@
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzY0MzM2MDQyLCJleHAiOjE3NjQ5NDA4NDJ9.nnZ0_wpxqkmP92eyS6YSUqu81Sz_7ApOxw4Yl_uX4jA
+
+
+@admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY0MzM1OTE3LCJleHAiOjE3NjQ5NDA3MTd9.GDQMoGU3QMVl4rzb87HJB4rqsocaAjLAodCO2q0mz_c
+
+
+### Create Rider (Admin)
+POST http://localhost:5000/api/v1/riders
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "name": "New Rider",
+  "contact": "9800000003",
+  "vehicle": "Bike"
+}
+
+### Get Riders (Admin)
+GET http://localhost:5000/api/v1/riders
+Authorization: Bearer {{admin_token}}
+
+### Assign Rider to Delivery (Admin)
+PUT http://localhost:5000/api/v1/deliveries/1/assign
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "riderId": 1
+}
+
+### Update Delivery Status (Admin)
+PUT http://localhost:5000/api/v1/deliveries/1/status
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "status": "OUT_FOR_DELIVERY"
+}

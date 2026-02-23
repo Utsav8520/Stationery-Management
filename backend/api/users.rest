@@ -1,0 +1,18 @@
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IkNVU1RPTUVSIiwiaWF0IjoxNzY0MzM2MDQyLCJleHAiOjE3NjQ5NDA4NDJ9.nnZ0_wpxqkmP92eyS6YSUqu81Sz_7ApOxw4Yl_uX4jA
+
+
+### Get Profile
+GET http://localhost:5000/api/v1/users/me
+Authorization: Bearer {{token}}
+
+### Update Profile
+PUT http://localhost:5000/api/v1/users/me
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "John Updated",
+  "address": "Lalitpur, Nepal",
+  "birthdate": "1995-05-05"
+}

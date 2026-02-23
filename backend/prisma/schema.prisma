@@ -1,0 +1,220 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        Int       @id @default(autoincrement())
+    email     String    @unique
+    password  String
+    role      Role      @default(CUSTOMER)
+    name      String?
+    address   String?   @db.Text
+    birthdate DateTime?
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+
+    orders  Order[]
+    credits CreditTransaction[]
+    cart    Cart?
+
+    @@index([email])
+}
+
+enum Role {
+    ADMIN
+    CUSTOMER
+}
+
+model Product {
+    id          Int      @id @default(autoincrement())
+    name        String
+    description String?  @db.Text
+    price       Float
+    stock       Int      @default(0)
+    imageUrl    String?
+    category    String?
+    featured    Boolean  @default(false)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    orderItems   OrderItem[]
+    cartItems    CartItem[]
+    stockHistory StockHistory[]
+
+    @@index([name])
+    @@index([category])
+    @@index([featured])
+}
+
+model StockHistory {
+    id        Int      @id @default(autoincrement())
+    productId Int
+    change    Int
+    reason    String?  @db.Text
+    createdAt DateTime @default(now())
+
+    product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+    @@index([productId])
+    @@index([createdAt])
+}
+
+model Cart {
+    id        Int      @id @default(autoincrement())
+    userId    Int      @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+    items CartItem[]
+}
+
+model CartItem {
+    id        Int @id @default(autoincrement())
+    cartId    Int
+    productId Int
+    quantity  Int @default(1)
+
+    cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+    product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+    @@unique([cartId, productId])
+}
+
+model Order {
+    id              Int         @id @default(autoincrement())
+    userId          Int
+    totalAmount     Float
+    status          OrderStatus @default(PENDING)
+    paymentId       Int?        @unique
+    deliveryId      Int?        @unique
+    deliveryAddress String?     @db.Text
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+
+    user     User        @relation(fields: [userId], references: [id])
+    items    OrderItem[]
+    payment  Payment?    @relation(fields: [paymentId], references: [id])
+    delivery Delivery?   @relation(fields: [deliveryId], references: [id])
+
+    @@index([userId])
+    @@index([status])
+    @@index([createdAt])
+}
+
+enum OrderStatus {
+    PENDING
+    PAID
+    PROCESSING
+    SHIPPED
+    DELIVERED
+    CANCELLED
+}
+
+model OrderItem {
+    id        Int   @id @default(autoincrement())
+    orderId   Int
+    productId Int
+    quantity  Int
+    price     Float
+
+    order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+    product Product @relation(fields: [productId], references: [id])
+}
+
+model Payment {
+    id        Int           @id @default(autoincrement())
+    orderId   Int?          @unique
+    amount    Float
+    method    String
+    status    PaymentStatus @default(PENDING)
+    pidx      String?       @unique
+    createdAt DateTime      @default(now())
+
+    order Order?
+}
+
+enum PaymentStatus {
+    PENDING
+    SUCCESS
+    FAILED
+}
+
+model Delivery {
+    id              Int            @id @default(autoincrement())
+    orderId         Int?           @unique
+    riderId         Int?
+    address         String         @db.Text
+    status          DeliveryStatus @default(PENDING)
+    trackingId      String?
+    deliveryPartner String?
+    createdAt       DateTime       @default(now())
+    updatedAt       DateTime       @updatedAt
+
+    order Order?
+    rider Rider? @relation(fields: [riderId], references: [id])
+
+    @@index([riderId])
+    @@index([status])
+}
+
+enum DeliveryStatus {
+    PENDING
+    OUT_FOR_DELIVERY
+    DELIVERED
+    FAILED
+}
+
+model Rider {
+    id        Int         @id @default(autoincrement())
+    name      String
+    contact   String?
+    vehicle   String?
+    status    RiderStatus @default(ACTIVE)
+    createdAt DateTime    @default(now())
+    updatedAt DateTime    @updatedAt
+
+    deliveries Delivery[]
+}
+
+enum RiderStatus {
+    ACTIVE
+    INACTIVE
+}
+
+model Party {
+    id        Int      @id @default(autoincrement())
+    name      String
+    contact   String?
+    type      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    transactions CreditTransaction[]
+
+    @@index([name])
+}
+
+model CreditTransaction {
+    id          Int      @id @default(autoincrement())
+    partyId     Int
+    userId      Int
+    amount      Float
+    type        String
+    description String?  @db.Text
+    createdAt   DateTime @default(now())
+
+    party Party @relation(fields: [partyId], references: [id], onDelete: Cascade)
+    user  User  @relation(fields: [userId], references: [id])
+
+    @@index([partyId])
+    @@index([createdAt])
+}

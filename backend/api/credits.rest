@@ -1,0 +1,30 @@
+@admin_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzY0MzM1OTE3LCJleHAiOjE3NjQ5NDA3MTd9.GDQMoGU3QMVl4rzb87HJB4rqsocaAjLAodCO2q0mz_c
+
+
+
+### Create Party (Admin)
+POST http://localhost:5000/api/v1/credits/parties
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "name": "Supplier XYZ",
+  "contact": "9800000000",
+  "type": "Supplier"
+}
+
+### Create Transaction (Admin)
+POST http://localhost:5000/api/v1/credits/transactions
+Authorization: Bearer {{admin_token}}
+Content-Type: application/json
+
+{
+  "partyId": 1,
+  "amount": 10000,
+  "type": "CREDIT",
+  "description": "Purchase of stock"
+}
+
+### Get Party Balance (Admin)
+GET http://localhost:5000/api/v1/credits/balance/1
+Authorization: Bearer {{admin_token}}

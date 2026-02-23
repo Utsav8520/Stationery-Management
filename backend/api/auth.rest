@@ -1,0 +1,29 @@
+### Register User (Age < 21 should fail)
+POST http://localhost:5000/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "email": "customer@example.com",
+  "password": "password123",
+  "name": "John Doe",
+  "address": "Kathmandu, Nepal",
+  "birthdate": "2000-01-01"
+}
+
+### Login User
+POST http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "customer@example.com",
+  "password": "password123"
+}
+
+### Admin Login
+POST http://localhost:5000/api/v1/auth/admin/login
+Content-Type: application/json
+
+{
+  "email": "admin@liquor.com",
+  "password": "Admin@123"
+}

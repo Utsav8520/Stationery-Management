@@ -1,0 +1,15 @@
+### Initiate Khalti Payment
+POST http://localhost:5000/api/v1/payments/khalti/initiate
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "orderId": 1
+}
+
+### Khalti Callback (Simulated)
+GET http://localhost:5000/api/v1/payments/khalti/callback?pidx=test_pidx&status=Completed&purchase_order_id=1
+
+### Get Payment Status
+GET http://localhost:5000/api/v1/payments/1
+Authorization: Bearer {{token}}
