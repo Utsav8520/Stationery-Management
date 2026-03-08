@@ -1,4 +1,4 @@
-# LiquorShop - E-Commerce Platform
+# Stationery Management System - E-Commerce Platform
 
 A modern, full-stack e-commerce platform for liquor sales built with React, Node.js, Express, and MySQL.
 
@@ -126,7 +126,6 @@ The database seed includes:
 
 - JWT-based authentication
 - Password hashing with bcrypt
-- Age verification (21+)
 - Role-based access control (Admin/Customer)
 - Protected routes
 
@@ -154,7 +153,6 @@ API endpoints are available at:
 
 ## 📝 Notes
 
-- Age verification is required (21+)
 - Payment integration uses Khalti (Nepal)
 - Free shipping on orders over Rs. 5,000
 - Delivery within 2-3 business days in Kathmandu Valley
@@ -169,4 +167,4 @@ For questions or issues, please contact the development team.
 
 ---
 
-**⚠️ Important:** This is a demo e-commerce platform. Ensure proper licensing and age verification systems are in place before deploying for actual liquor sales.
+**⚠️ Important:** This is a demo e-commerce platform.**
