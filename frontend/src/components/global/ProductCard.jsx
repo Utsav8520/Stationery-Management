@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
     };
 
     const imageUrl = product.imageUrl
-        ? `${import.meta.env.VITE_BACKEND_URL}${product.imageUrl} `
+        ? (product.imageUrl.startsWith('http') ? product.imageUrl : `${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`)
         : "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=300&fit=crop";
 
     const isLowStock = product.stock > 0 && product.stock <= 10;

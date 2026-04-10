@@ -7,12 +7,12 @@ async function main() {
     console.log('Start seeding ...');
 
     // Create Admin User
-    const adminPassword = await bcrypt.hash('Admin@123', 10);
+    const adminPassword = await bcrypt.hash('Utsav12345', 10);
     const admin = await prisma.user.upsert({
-        where: { email: 'admin@liquor.com' },
+        where: { email: 'stationerystore@gmail.com' },
         update: {},
         create: {
-            email: 'admin@liquor.com',
+            email: 'stationerystore@gmail.com',
             password: adminPassword,
             name: 'System Admin',
             role: 'ADMIN',
@@ -31,7 +31,7 @@ async function main() {
             stock: 15,
             category: 'Office Supplies',
             featured: true,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop'
         },
         {
             name: 'Pro Cricket Bat - English Willow',
@@ -40,7 +40,7 @@ async function main() {
             stock: 20,
             category: 'Sports',
             featured: true,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&h=300&fit=crop'
         },
         {
             name: 'Deluxe Stationery Kit',
@@ -49,7 +49,7 @@ async function main() {
             stock: 50,
             category: 'Stationery',
             featured: true,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&h=300&fit=crop'
         },
         {
             name: 'Professional Football',
@@ -58,7 +58,7 @@ async function main() {
             stock: 30,
             category: 'Sports',
             featured: true,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=400&h=300&fit=crop'
         },
         {
             name: 'Executive Notebook Collection',
@@ -67,7 +67,7 @@ async function main() {
             stock: 25,
             category: 'Stationery',
             featured: true,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&h=300&fit=crop'
         },
         {
             name: 'Basketball - Official Size',
@@ -76,7 +76,7 @@ async function main() {
             stock: 35,
             category: 'Sports',
             featured: true,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop'
         },
         // Regular Products
         {
@@ -86,7 +86,7 @@ async function main() {
             stock: 60,
             category: 'School Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop'
         },
         {
             name: 'Football Shoes - Nike',
@@ -95,7 +95,7 @@ async function main() {
             stock: 25,
             category: 'Sports',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=300&fit=crop'
         },
         {
             name: 'Ballpoint Pen Set (10 pcs)',
@@ -104,7 +104,7 @@ async function main() {
             stock: 200,
             category: 'Stationery',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=400&h=300&fit=crop'
         },
         {
             name: 'Desktop Organizer',
@@ -113,7 +113,7 @@ async function main() {
             stock: 45,
             category: 'Office Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=300&fit=crop'
         },
         {
             name: 'Exercise Book (200 pages)',
@@ -122,7 +122,7 @@ async function main() {
             stock: 500,
             category: 'School Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop'
         },
         {
             name: 'Table Tennis Set',
@@ -131,7 +131,7 @@ async function main() {
             stock: 40,
             category: 'Sports',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1611251135345-18c56206b863?w=400&h=300&fit=crop'
         },
         {
             name: 'Stapler with Staples',
@@ -140,7 +140,7 @@ async function main() {
             stock: 80,
             category: 'Office Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=300&fit=crop'
         },
         {
             name: 'Crayons Set (24 colors)',
@@ -149,7 +149,7 @@ async function main() {
             stock: 100,
             category: 'School Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop'
         },
         {
             name: 'Badminton Racket Set',
@@ -158,7 +158,7 @@ async function main() {
             stock: 30,
             category: 'Sports',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400&h=300&fit=crop'
         },
         {
             name: 'Scientific Calculator',
@@ -167,7 +167,7 @@ async function main() {
             stock: 50,
             category: 'School Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=300&fit=crop'
         },
         {
             name: 'File Folder Set',
@@ -176,7 +176,7 @@ async function main() {
             stock: 75,
             category: 'Office Supplies',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=400&h=300&fit=crop'
         },
         {
             name: 'Volleyball',
@@ -185,7 +185,7 @@ async function main() {
             stock: 35,
             category: 'Sports',
             featured: false,
-            imageUrl: null
+            imageUrl: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=400&h=300&fit=crop'
         }
     ];
 

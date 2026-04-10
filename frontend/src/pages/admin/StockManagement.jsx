@@ -123,7 +123,7 @@ const InventoryTab = () => {
                                     <img
                                         src={
                                             product.imageUrl
-                                                ? `${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`
+                                                ? (product.imageUrl.startsWith('http') ? product.imageUrl : `${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`)
                                                 : "/placeholder.svg"
                                         }
                                         alt={product.name}
@@ -231,7 +231,7 @@ const HistoryTab = () => {
                                     <img
                                         src={
                                             item.product?.imageUrl
-                                                ? `${import.meta.env.VITE_BACKEND_URL}${item.product.imageUrl}`
+                                                ? (item.product.imageUrl.startsWith('http') ? item.product.imageUrl : `${import.meta.env.VITE_BACKEND_URL}${item.product.imageUrl}`)
                                                 : "/placeholder.svg"
                                         }
                                         alt={item.product?.name || "Product"}
@@ -372,7 +372,7 @@ const BulkOperationTab = ({ mode }) => {
                                 <img
                                     src={
                                         product.imageUrl
-                                            ? `${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`
+                                            ? (product.imageUrl.startsWith('http') ? product.imageUrl : `${import.meta.env.VITE_BACKEND_URL}${product.imageUrl}`)
                                             : "/placeholder.svg"
                                     }
                                     alt={product.name}
@@ -400,7 +400,7 @@ const BulkOperationTab = ({ mode }) => {
                                 <img
                                     src={
                                         p.imageUrl
-                                            ? `${import.meta.env.VITE_BACKEND_URL}${p.imageUrl}`
+                                            ? (p.imageUrl.startsWith('http') ? p.imageUrl : `${import.meta.env.VITE_BACKEND_URL}${p.imageUrl}`)
                                             : "/placeholder.svg"
                                     }
                                     alt={p.name}

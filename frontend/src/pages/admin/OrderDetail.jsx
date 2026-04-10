@@ -180,8 +180,7 @@ const AdminOrderDetailPage = () => {
                                                 <img
                                                     src={
                                                         item.product.imageUrl
-                                                            ? `${import.meta.env.VITE_BACKEND_URL}${item.product.imageUrl
-                                                            }`
+                                                            ? (item.product.imageUrl.startsWith('http') ? item.product.imageUrl : `${import.meta.env.VITE_BACKEND_URL}${item.product.imageUrl}`)
                                                             : "/placeholder.svg"
                                                     }
                                                     alt={item.product.name}
